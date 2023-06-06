@@ -2,52 +2,68 @@
  * Функции написанные здесь пригодятся на последующих уроках
  * */
 
-/**
- * Нужно создать тип Category, он будет использоваться ниже.
- * Категория содержит
- * - id (строка)
- * - name (строка)
- * - photo (строка, необязательно)
- *
- * Продукт (Product) содержит
- * - id (строка)
- * - name (строка)
- * - photo (строка)
- * - desc (строка, необязательно)
- * - createdAt (строка)
- * - oldPrice (число, необязательно)
- * - price (строка)
- * - category (Категория)
- *
- * Операция (Operation) может быть либо тратой (Cost), либо доходом (Profit)
- *
- * Трата (Cost) содержит
- * - id (строка)
- * - name (строка)
- * - desc (строка, необязательно)
- * - createdAt (строка)
- * - amount (число)
- * - category (Категория)
- * - type ('Cost')
- *
- * Доход (Profit) содержит
- * - id (строка)
- * - name (строка)
- * - desc (строка, необязательно)
- * - createdAt (строка)
- * - amount (число)
- * - category (Категория)
- * - type ('Profit')
- * */
+type Category = {
+  id: string;
+  name: string;
+  photo?: string;
+};
 
-/**
- * Создает случайный продукт (Product).
- * Принимает дату создания (строка)
- * */
-// export const createRandomProduct = (createdAt: string) => {};
+type Product = {
+  id: string;
+  name: string;
+  photo: string;
+  desc?: string;
+  createdAt: string;
+  oldPrice?: number;
+  price: string;
+  category: Category;
+};
 
-/**
- * Создает случайную операцию (Operation).
- * Принимает дату создания (строка)
- * */
-// export const createRandomOperation = (createdAt: string) => {};
+type Cost = {
+  id: string;
+  name: string;
+  desc?: string;
+  createdAt: string;
+  amount: number;
+  category: Category;
+  type: 'Cost';
+};
+
+type Profit = {
+  id: string;
+  name: string;
+  desc?: string;
+  createdAt: string;
+  amount: number;
+  category: Category;
+  type: 'Profit';
+};
+
+type Operation = Cost | Profit;
+
+export const createRandomProduct = (createdAt: string): Product => ({
+  id: '0',
+  name: 'random_product',
+  photo: 'url',
+  desc: 'desc',
+  createdAt,
+  oldPrice: 50,
+  price: '100',
+  category: {
+    id: '0',
+    name: 'random_category',
+  },
+});
+
+export const createRandomOperation = (createdAt: string): Operation => ({
+  type: 'Cost',
+  id: '0',
+  name: 'random_operation',
+  desc: 'desc',
+  createdAt,
+  amount: 100,
+  category: {
+    id: '0',
+    name: 'random_category',
+  },
+});
